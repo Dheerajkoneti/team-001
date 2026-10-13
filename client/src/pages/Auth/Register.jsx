@@ -117,13 +117,6 @@ const Register = () => {
       triggerPopup("error", err.response?.data?.message || "Unable to resend OTP");
     }
   };
-
-  // ======================
-  // Google Login
-  // ======================
-  window.location.href = `${
-    import.meta.env.VITE_API_URL || "http://localhost:5000/api"
-  }/auth/google`;
   return (
     <div style={styles.page}>
       <style>{`
