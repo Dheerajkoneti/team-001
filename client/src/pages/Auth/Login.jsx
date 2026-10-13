@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API from "../api/axios";
+import API from "../../api/axios";
 import { useNavigate, Link } from "react-router-dom";
 import {
   Zap,
