@@ -1,0 +1,9 @@
+$kind: http-request
+name: Delete Poll
+url: http://localhost:5000/api/polls/6a9b0515445809930c94f1f3
+method: DELETE
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0ffk}}"
+order: 4332257030441024

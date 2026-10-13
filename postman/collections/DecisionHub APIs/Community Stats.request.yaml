@@ -1,0 +1,9 @@
+$kind: http-request
+name: Community Stats
+url: http://localhost:5000/api/communities/stats
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_1cb9}}"
+order: 21000

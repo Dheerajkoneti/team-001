@@ -1,0 +1,15 @@
+$kind: collection
+name: DecisionHub APIs
+variables:
+  - key: json_web_token_0mmf
+    secret: true
+    disabled: false
+  - key: json_web_token_0zoh
+    secret: true
+    disabled: false
+  - key: json_web_token_1cb9
+    secret: true
+    disabled: false
+  - key: json_web_token_0ffk
+    secret: true
+    disabled: false

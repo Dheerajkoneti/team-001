@@ -1,0 +1,9 @@
+$kind: http-request
+name: Get All Communities
+url: http://localhost:5000/api/communities
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_1cb9}}"
+order: 20000

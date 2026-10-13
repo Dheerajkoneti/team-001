@@ -1,0 +1,18 @@
+$kind: http-request
+name: Create Team
+url: http://localhost:5000/api/teams/create
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"name\": \"Final Year Project Team\",\r
+
+    \  \"description\": \"Discussion for project selection\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_1cb9}}"
+order: 9000

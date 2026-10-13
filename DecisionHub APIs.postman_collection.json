@@ -1,0 +1,1483 @@
+﻿{
+    "info":  {
+                 "_postman_id":  "a3e1665d-089d-48ee-8af6-29c485856016",
+                 "name":  "DecisionHub APIs",
+                 "schema":  "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+             },
+    "item":  [
+                 {
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/auth/login",
+                                                 "path":  [
+                                                              "api",
+                                                              "auth",
+                                                              "login"
+                                                          ]
+                                             },
+                                     "body":  {
+                                                  "raw":  "{\"email\": \"admin@gmail.com\",\"password\": \"Dheeraj@2004\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "LOGIN API Admin",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/users/profile",
+                                                 "path":  [
+                                                              "api",
+                                                              "users",
+                                                              "profile"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Get Profile",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/users/profile",
+                                                 "path":  [
+                                                              "api",
+                                                              "users",
+                                                              "profile"
+                                                          ]
+                                             }
+                                 },
+                     "name":  "Update Profile-1",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/feedback",
+                                                 "path":  [
+                                                              "api",
+                                                              "feedback"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              },
+                                     "body":  {
+                                                  "raw":  "{\"rating\": 5,\"feedback\": \"Excellent platform and user friendly interface\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "Submit Feedback",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/auth/login",
+                                                 "path":  [
+                                                              "api",
+                                                              "auth",
+                                                              "login"
+                                                          ]
+                                             },
+                                     "body":  {
+                                                  "raw":  "{\"email\": \"99230040346@klu.ac.in\",\"password\": \"Dheeraj@2004\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "Login Api user",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/feedback",
+                                                 "path":  [
+                                                              "api",
+                                                              "feedback"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_0ffk}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Get All Feedbacks",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/profile-analytics",
+                                                 "path":  [
+                                                              "api",
+                                                              "profile-analytics"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Profile Analytics",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/decision/create",
+                                                 "path":  [
+                                                              "api",
+                                                              "decision",
+                                                              "create"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              },
+                                     "body":  {
+                                                  "raw":  "{\"title\": \"Choose Final Year Project\",\"description\": \"Need to select a project\",\"teamId\": \"6aba9c4352a3bb9199556320\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "Create Decision",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/teams/create",
+                                                 "path":  [
+                                                              "api",
+                                                              "teams",
+                                                              "create"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              },
+                                     "body":  {
+                                                  "raw":  "{\"name\": \"Final Year Project Team\",\"description\": \"Discussion for project selection\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "Create Team",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/decision/team/6aba9c8852a3bb9199556322",
+                                                 "path":  [
+                                                              "api",
+                                                              "decision",
+                                                              "team",
+                                                              "6aba9c8852a3bb9199556322"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Get Team Decisions",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/teams",
+                                                 "path":  [
+                                                              "api",
+                                                              "teams"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Get All Teams",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/auth/register",
+                                                 "path":  [
+                                                              "api",
+                                                              "auth",
+                                                              "register"
+                                                          ]
+                                             },
+                                     "body":  {
+                                                  "raw":  "{\"name\": \"Dheeraj Kumar\",\"email\": \"99230040407@klu.ac.in\",\"password\": \"Dheeraj@2004\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "Register",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/auth/verify-email",
+                                                 "path":  [
+                                                              "api",
+                                                              "auth",
+                                                              "verify-email"
+                                                          ]
+                                             },
+                                     "body":  {
+                                                  "raw":  "{\"email\": \"99230040407@klu.ac.in\",\"code\": \"793523\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "Verify OTP",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/auth/login",
+                                                 "path":  [
+                                                              "api",
+                                                              "auth",
+                                                              "login"
+                                                          ]
+                                             },
+                                     "body":  {
+                                                  "raw":  "{\"email\": \"99230040407@klu.ac.in\",\"password\": \"Dheeraj@2004\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "Reset Password API",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/auth/forgot-password",
+                                                 "path":  [
+                                                              "api",
+                                                              "auth",
+                                                              "forgot-password"
+                                                          ]
+                                             },
+                                     "body":  {
+                                                  "raw":  "{\"email\": \"99230040407@klu.ac.in\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "ForgotPassword",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/teams/6aba9c4352a3bb9199556320",
+                                                 "path":  [
+                                                              "api",
+                                                              "teams",
+                                                              "6aba9c4352a3bb9199556320"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Get Team By ID",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "PUT",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/teams/6aba9c4352a3bb9199556320",
+                                                 "path":  [
+                                                              "api",
+                                                              "teams",
+                                                              "6aba9c4352a3bb9199556320"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              },
+                                     "body":  {
+                                                  "raw":  "{\"name\": \"Updated Team\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "Update Team",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "DELETE",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/teams/6abaa3db52a3bb9199556324",
+                                                 "path":  [
+                                                              "api",
+                                                              "teams",
+                                                              "6abaa3db52a3bb9199556324"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Delete Team",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+                                                    {
+                                                        "key":  "Content-Type",
+                                                        "type":  "text",
+                                                        "value":  "application/json"
+                                                    }
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/communities/create",
+                                                 "path":  [
+                                                              "api",
+                                                              "communities",
+                                                              "create"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_0ffk}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              },
+                                     "body":  {
+                                                  "raw":  "{\"name\": \"Java Developers\",\"description\": \"Community for Java developers\",\"category\": \"Technology\",\"image\": \"\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "Create Community",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/communities",
+                                                 "path":  [
+                                                              "api",
+                                                              "communities"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Get All Communities",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/communities/stats",
+                                                 "path":  [
+                                                              "api",
+                                                              "communities",
+                                                              "stats"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Community Stats",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/communities/6a9dd6386611d4166c8080ab/leave",
+                                                 "path":  [
+                                                              "api",
+                                                              "communities",
+                                                              "6a9dd6386611d4166c8080ab",
+                                                              "leave"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Leave Community",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "PUT",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/communities/6a9dd6386611d4166c8080ab",
+                                                 "path":  [
+                                                              "api",
+                                                              "communities",
+                                                              "6a9dd6386611d4166c8080ab"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_0ffk}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              },
+                                     "body":  {
+                                                  "raw":  "{\"name\": \"AI Community Updated\",\"description\": \"Updated Description\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "UpdateCommunity",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "DELETE",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/communities/6abaa64152a3bb9199556335",
+                                                 "path":  [
+                                                              "api",
+                                                              "communities",
+                                                              "6abaa64152a3bb9199556335"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_0ffk}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Delete Community",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/analytics",
+                                                 "path":  [
+                                                              "api",
+                                                              "analytics"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Get Analytics",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/dashboard/analytics",
+                                                 "path":  [
+                                                              "api",
+                                                              "dashboard",
+                                                              "analytics"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Dashboard Analytics",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/dashboard/recent-decisions",
+                                                 "path":  [
+                                                              "api",
+                                                              "dashboard",
+                                                              "recent-decisions"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Recent Decisions",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/dashboard/voting-participation",
+                                                 "path":  [
+                                                              "api",
+                                                              "dashboard",
+                                                              "voting-participation"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Voting Participation",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/auth/login",
+                                                 "path":  [
+                                                              "api",
+                                                              "auth",
+                                                              "login"
+                                                          ]
+                                             },
+                                     "body":  {
+                                                  "raw":  "{\"email\": \"99230040407@klu.ac.in\",\"password\": \"Dheeraj@2004\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "LOGIN",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "PUT",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/users/profile",
+                                                 "path":  [
+                                                              "api",
+                                                              "users",
+                                                              "profile"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              },
+                                     "body":  {
+                                                  "raw":  "{\"name\": \"Dheeraj Kumar\",\"phone\": \"9704566541\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "Update Profile",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/polls",
+                                                 "path":  [
+                                                              "api",
+                                                              "polls"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              },
+                                     "body":  {
+                                                  "raw":  "{\"title\": \"Best Technology\",\"description\": \"Vote your favorite technology\",\"question\": \"Which technology do you like most?\",\"options\": [{\"text\": \"Java\"},{\"text\": \"Python\"},{\"text\": \"MERN\"}],\"pollType\": \"single\",\"visibility\": \"public\",\"anonymous\": false}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "Create Poll",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/polls",
+                                                 "path":  [
+                                                              "api",
+                                                              "polls"
+                                                          ]
+                                             }
+                                 },
+                     "name":  "Get All Polls",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/polls/6a9b0515445809930c94f1f3",
+                                                 "path":  [
+                                                              "api",
+                                                              "polls",
+                                                              "6a9b0515445809930c94f1f3"
+                                                          ]
+                                             }
+                                 },
+                     "name":  "Get Poll By ID",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "PUT",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/polls/6a9b0515445809930c94f1f3",
+                                                 "path":  [
+                                                              "api",
+                                                              "polls",
+                                                              "6a9b0515445809930c94f1f3"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_0ffk}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              },
+                                     "body":  {
+                                                  "raw":  "{\"title\": \"Updated Poll\",\"description\": \"Updated Description\"}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "Update Poll",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "DELETE",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/polls/6a9b0515445809930c94f1f3",
+                                                 "path":  [
+                                                              "api",
+                                                              "polls",
+                                                              "6a9b0515445809930c94f1f3"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_0ffk}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Delete Poll",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/polls/6a9b11c1733b0376292038d1/user/6a9b1fb7a66f112d7f9975e2/voted",
+                                                 "path":  [
+                                                              "api",
+                                                              "polls",
+                                                              "6a9b11c1733b0376292038d1",
+                                                              "user",
+                                                              "6a9b1fb7a66f112d7f9975e2",
+                                                              "voted"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Check User Voted",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/polls/total",
+                                                 "path":  [
+                                                              "api",
+                                                              "polls",
+                                                              "total"
+                                                          ]
+                                             }
+                                 },
+                     "name":  "Total Polls",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/polls/votes/total",
+                                                 "path":  [
+                                                              "api",
+                                                              "polls",
+                                                              "votes",
+                                                              "total"
+                                                          ]
+                                             }
+                                 },
+                     "name":  "Total Votes",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/notifications",
+                                                 "path":  [
+                                                              "api",
+                                                              "notifications"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Get All Notifications",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "PUT",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/notifications/6abaa3db52a3bb9199556325/read",
+                                                 "path":  [
+                                                              "api",
+                                                              "notifications",
+                                                              "6abaa3db52a3bb9199556325",
+                                                              "read"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Mark Notification as Read",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "DELETE",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/notifications/6a9dbad44f050500bf1300f5",
+                                                 "path":  [
+                                                              "api",
+                                                              "notifications",
+                                                              "6a9dbad44f050500bf1300f5"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Delete Notification",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/option-comparison",
+                                                 "path":  [
+                                                              "api",
+                                                              "option-comparison"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              },
+                                     "body":  {
+                                                  "raw":  "{\"title\": \"Laptop Comparison\",\"decisionId\": \"68d95f7e1d2f23456789abc\",\"description\": \"Compare MacBook vs Dell\",\"options\": [{\"name\": \"MacBook Pro\",\"score\": 90},{\"name\": \"Dell XPS\",\"score\": 85}]}",
+                                                  "options":  {
+                                                                  "raw":  {
+                                                                              "language":  "json"
+                                                                          }
+                                                              },
+                                                  "mode":  "raw"
+                                              }
+                                 },
+                     "name":  "Create Option-Comparison",
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost:5000"
+                                                          ],
+                                                 "raw":  "http://localhost:5000/api/option-comparison",
+                                                 "path":  [
+                                                              "api",
+                                                              "option-comparison"
+                                                          ]
+                                             },
+                                     "auth":  {
+                                                  "bearer":  [
+                                                                 {
+                                                                     "key":  "token",
+                                                                     "type":  "string",
+                                                                     "value":  "{{json_web_token_1cb9}}"
+                                                                 }
+                                                             ],
+                                                  "type":  "bearer"
+                                              }
+                                 },
+                     "name":  "Get All Comparisons",
+                     "response":  [
+
+                                  ]
+                 }
+             ],
+    "variable":  [
+                     {
+                         "key":  "json_web_token_0mmf",
+                         "type":  "secret",
+                         "value":  ""
+                     },
+                     {
+                         "key":  "json_web_token_0zoh",
+                         "type":  "secret",
+                         "value":  ""
+                     },
+                     {
+                         "key":  "json_web_token_1cb9",
+                         "type":  "secret",
+                         "value":  ""
+                     },
+                     {
+                         "key":  "json_web_token_0ffk",
+                         "type":  "secret",
+                         "value":  ""
+                     }
+                 ]
+}

@@ -1,0 +1,5 @@
+$kind: http-request
+name: Total Polls
+url: http://localhost:5000/api/polls/total
+method: GET
+order: 4501024571293454

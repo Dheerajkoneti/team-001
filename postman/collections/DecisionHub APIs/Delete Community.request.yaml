@@ -1,0 +1,9 @@
+$kind: http-request
+name: Delete Community
+url: http://localhost:5000/api/communities/6abaa64152a3bb9199556335
+method: DELETE
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0ffk}}"
+order: 24000

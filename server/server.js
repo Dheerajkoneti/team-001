@@ -37,6 +37,8 @@ require("./routes/feedbackRoutes");
 const analyticsRoutes = require(
   "./routes/analyticsRoutes"
 );
+const publicStatsController =
+  require("./controllers/publicStatsController");
 
 // =========================
 // SOCKET.IO CONFIGURATION
@@ -142,6 +144,11 @@ app.use(
 app.use(
   "/api/profile-analytics",
   require("./routes/profileAnalytics")
+);
+// Public statistics for the Landing Page
+app.get(
+  "/api/public/stats",
+  publicStatsController.getPublicStats
 );
 // =========================
 // TEST ROUTE

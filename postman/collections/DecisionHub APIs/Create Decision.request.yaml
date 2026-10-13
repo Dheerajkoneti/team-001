@@ -1,0 +1,20 @@
+$kind: http-request
+name: Create Decision
+url: http://localhost:5000/api/decision/create
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"title\": \"Choose Final Year Project\",\r
+
+    \  \"description\": \"Need to select a project\",\r
+
+    \  \"teamId\": \"6aba9c4352a3bb9199556320\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_1cb9}}"
+order: 8000

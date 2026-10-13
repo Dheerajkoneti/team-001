@@ -1,0 +1,9 @@
+$kind: http-request
+name: Leave Community
+url: http://localhost:5000/api/communities/6a9dd6386611d4166c8080ab/leave
+method: POST
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_1cb9}}"
+order: 22000

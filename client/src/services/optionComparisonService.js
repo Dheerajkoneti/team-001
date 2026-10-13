@@ -1,12 +1,16 @@
+
 import axios from "axios";
 
-const API =
-  "http://localhost:5000/api/option-comparison";
+const API = `${
+  import.meta.env.VITE_API_URL || "http://localhost:5000/api"
+}/option-comparison`;
 
-const getToken = () => {
+const getConfig = () => {
   const token = localStorage.getItem("token");
 
-  console.log("TOKEN:", token);
+  if (!token) {
+    throw new Error("Please log in to continue.");
+  }
 
   return {
     headers: {
@@ -16,29 +20,19 @@ const getToken = () => {
 };
 
 export const createComparison = (data) =>
-  axios.post(API, data, getToken());
+  axios.post(API, data, getConfig());
 
 export const getComparison = (decisionId) =>
   axios.get(
-    `${API}/${decisionId}`,
-    getToken()
+    `${API}/${encodeURIComponent(decisionId)}`,
+    getConfig()
   );
 
 export const getAllComparisons = () =>
-  axios.get(API, getToken());
+  axios.get(API, getConfig());
 
-export const updateComparison = (
-  id,
-  data
-) =>
-  axios.put(
-    `${API}/${id}`,
-    data,
-    getToken()
-  );
+export const updateComparison = (id, data) =>
+  axios.put(`${API}/${id}`, data, getConfig());
 
 export const deleteComparison = (id) =>
-  axios.delete(
-    `${API}/${id}`,
-    getToken()
-  );
+  axios.delete(`${API}/${id}`, getConfig());

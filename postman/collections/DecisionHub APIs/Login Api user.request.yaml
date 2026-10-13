@@ -1,0 +1,14 @@
+$kind: http-request
+name: Login Api user
+url: http://localhost:5000/api/auth/login
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"email\": \"99230040346@klu.ac.in\",\r
+
+    \  \"password\": \"Dheeraj@2004\"\r
+
+    }"
+order: 5000

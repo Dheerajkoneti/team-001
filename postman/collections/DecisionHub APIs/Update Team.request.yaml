@@ -1,0 +1,16 @@
+$kind: http-request
+name: Update Team
+url: http://localhost:5000/api/teams/6aba9c4352a3bb9199556320
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \  \"name\": \"Updated Team\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_1cb9}}"
+order: 17000

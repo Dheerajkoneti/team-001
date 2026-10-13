@@ -1,0 +1,40 @@
+$kind: http-request
+name: Create Option-Comparison
+url: http://localhost:5000/api/option-comparison
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"title\": \"Laptop Comparison\",\r
+
+    \  \"decisionId\": \"68d95f7e1d2f23456789abc\",\r
+
+    \  \"description\": \"Compare MacBook vs Dell\",\r
+
+    \  \"options\": [\r
+
+    \    {\r
+
+    \      \"name\": \"MacBook Pro\",\r
+
+    \      \"score\": 90\r
+
+    \    },\r
+
+    \    {\r
+
+    \      \"name\": \"Dell XPS\",\r
+
+    \      \"score\": 85\r
+
+    \    }\r
+
+    \  ]\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_1cb9}}"
+order: 4503226228911568

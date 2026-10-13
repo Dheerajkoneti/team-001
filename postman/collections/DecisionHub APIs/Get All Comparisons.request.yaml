@@ -1,0 +1,9 @@
+$kind: http-request
+name: Get All Comparisons
+url: http://localhost:5000/api/option-comparison
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_1cb9}}"
+order: 4503460609168144

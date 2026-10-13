@@ -1,0 +1,19 @@
+$kind: http-request
+name: Update Profile
+description: ""
+url: http://localhost:5000/api/users/profile
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \  \"name\": \"Dheeraj Kumar\",\r
+
+    \  \"phone\": \"9704566541\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_1cb9}}"
+order: 30000

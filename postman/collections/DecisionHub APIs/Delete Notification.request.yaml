@@ -1,0 +1,9 @@
+$kind: http-request
+name: Delete Notification
+url: http://localhost:5000/api/notifications/6a9dbad44f050500bf1300f5
+method: DELETE
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_1cb9}}"
+order: 4503558345194129

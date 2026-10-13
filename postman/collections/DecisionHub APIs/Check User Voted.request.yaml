@@ -1,0 +1,9 @@
+$kind: http-request
+name: Check User Voted
+url: http://localhost:5000/api/polls/6a9b11c1733b0376292038d1/user/6a9b1fb7a66f112d7f9975e2/voted
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_1cb9}}"
+order: 4503197007049387

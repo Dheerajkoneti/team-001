@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Users,
@@ -40,8 +40,60 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   const [activeFaq, setActiveFaq] = useState(null);
-  const [demoVote, setDemoVote] = useState({ react: 8, next: 4 });
   const [hasVoted, setHasVoted] = useState(false);
+
+  // Public, database-backed figures returned by the Express API.
+  const [stats, setStats] = useState({
+    totalUsers: 0,
+    totalTeams: 0,
+    totalDecisions: 0,
+    totalPolls: 0,
+    totalVotes: null,
+  });
+  const [statsLoading, setStatsLoading] = useState(true);
+  const [statsError, setStatsError] = useState("");
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const fetchPublicStats = async () => {
+      try {
+        const baseUrl = (
+          import.meta.env.VITE_API_URL || "http://localhost:5000/api"
+        ).replace(/\/$/, "");
+        const response = await fetch(`${baseUrl}/public/stats`, {
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`Statistics request failed (${response.status})`);
+        }
+
+        const payload = await response.json();
+        if (!payload.success || !payload.stats) {
+          throw new Error("The statistics API returned an unexpected response.");
+        }
+
+        setStats((current) => ({ ...current, ...payload.stats }));
+        setStatsError("");
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          console.error("Unable to load DecisionHub public statistics:", error);
+          setStatsError("Live statistics are temporarily unavailable.");
+        }
+      } finally {
+        if (!controller.signal.aborted) setStatsLoading(false);
+      }
+    };
+
+    fetchPublicStats();
+    return () => controller.abort();
+  }, []);
+
+  const formatCount = (value) =>
+    Number.isFinite(Number(value))
+      ? new Intl.NumberFormat().format(Number(value))
+      : "—";
 
   // Interactive AI Decision Simulator state
   const [simQuestion, setSimQuestion] = useState("Should our team use React or Angular?");
@@ -69,12 +121,9 @@ const LandingPage = () => {
     }
   };
 
-  const handleVote = (choice) => {
+  // This is an interactive front-end demonstration, not a persisted poll.
+  const handleVote = () => {
     if (hasVoted) return;
-    setDemoVote((prev) => ({
-      ...prev,
-      [choice]: prev[choice] + 1
-    }));
     setHasVoted(true);
   };
 
@@ -279,24 +328,25 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Animated Statistics */}
-      <section style={styles.stats}>
+      {/* Live Statistics: values are fetched from MongoDB through the API. */}
+      <section style={styles.stats} aria-live="polite">
         <div style={styles.statCard} className="interactive-card">
-          <h2 style={styles.statNumber}>10K+</h2>
-          <p style={styles.statText}>Decisions Made</p>
+          <h2 style={styles.statNumber}>{statsLoading ? "..." : formatCount(stats.totalDecisions)}</h2>
+          <p style={styles.statText}>Decisions Created</p>
         </div>
         <div style={styles.statCard} className="interactive-card">
-          <h2 style={styles.statNumber}>2K+</h2>
-          <p style={styles.statText}>Active Teams</p>
+          <h2 style={styles.statNumber}>{statsLoading ? "..." : formatCount(stats.totalTeams)}</h2>
+          <p style={styles.statText}>Teams Created</p>
         </div>
         <div style={styles.statCard} className="interactive-card">
-          <h2 style={styles.statNumber}>50K+</h2>
-          <p style={styles.statText}>Votes Cast</p>
+          <h2 style={styles.statNumber}>{statsLoading ? "..." : stats.totalVotes == null ? "—" : formatCount(stats.totalVotes)}</h2>
+          <p style={styles.statText}>Votes Submitted</p>
         </div>
         <div style={styles.statCard} className="interactive-card">
-          <h2 style={styles.statNumber}>98%</h2>
-          <p style={styles.statText}>Satisfaction Rate</p>
+          <h2 style={styles.statNumber}>{statsLoading ? "..." : formatCount(stats.totalUsers)}</h2>
+          <p style={styles.statText}>Registered Users</p>
         </div>
+        {statsError && <p style={{ ...styles.statText, gridColumn: "1 / -1" }}>{statsError}</p>}
       </section>
 
       {/* Problem vs Solution */}
@@ -379,12 +429,12 @@ const LandingPage = () => {
           <div style={styles.featureCard} className="interactive-card">
             <div style={styles.iconWrapper}><Bell size={24} color="#10b981" /></div>
             <h3>Instant Notifications</h3>
-            <p>Get alerted immediately via web hooks and triggers when votes close.</p>
+            <p>Receive updates about activity and voting events in your workspace.</p>
           </div>
           <div style={styles.featureCard} className="interactive-card">
             <div style={styles.iconWrapper}><ShieldCheck size={24} color="#f59e0b" /></div>
             <h3>Role Management</h3>
-            <p>Granular permissions with Admin, Team Lead, and Member authorization levels.</p>
+            <p>Manage access according to the roles and permissions configured in your application.</p>
           </div>
           <div style={styles.featureCard} className="interactive-card">
             <div style={styles.iconWrapper}><Clock size={24} color="#38bdf8" /></div>
@@ -412,7 +462,7 @@ const LandingPage = () => {
       {/* Live Voting Demo */}
       <section id="demo" style={styles.liveDemo}>
         <h2 style={styles.sectionTitle}>Interactive Live Voting Demo</h2>
-        <p style={styles.sectionSubtitle}>Test out the live voting mechanism right now.</p>
+        <p style={styles.sectionSubtitle}>Preview the interface only. These demo buttons do not save votes to your database.</p>
         
         <div style={styles.demoCard} className="interactive-card">
           <h3 style={{marginBottom: '15px'}}>Which Frontend Framework should we adopt for the core dashboard?</h3>
@@ -420,21 +470,21 @@ const LandingPage = () => {
             <div style={styles.demoOptionRow}>
               <span>React ecosystem</span>
               <div style={styles.demoButtonRow}>
-                <span style={{fontWeight: 'bold', color: '#38bdf8'}}>{demoVote.react} Votes</span>
-                <button style={styles.voteBtn} className="vote-action-btn" onClick={() => handleVote('react')} disabled={hasVoted}>Vote React</button>
+                <span style={{fontWeight: 'bold', color: '#38bdf8'}}>Demo option</span>
+                <button style={styles.voteBtn} className="vote-action-btn" onClick={handleVote} disabled={hasVoted}>Vote React</button>
               </div>
             </div>
             <div style={styles.demoOptionRow}>
               <span>Next.js fullstack architecture</span>
               <div style={styles.demoButtonRow}>
-                <span style={{fontWeight: 'bold', color: '#818cf8'}}>{demoVote.next} Votes</span>
-                <button style={styles.voteBtn} className="vote-action-btn" onClick={() => handleVote('next')} disabled={hasVoted}>Vote Next.js</button>
+                <span style={{fontWeight: 'bold', color: '#818cf8'}}>Demo option</span>
+                <button style={styles.voteBtn} className="vote-action-btn" onClick={handleVote} disabled={hasVoted}>Vote Next.js</button>
               </div>
             </div>
           </div>
           <div style={styles.demoStatusBox}>
             <span>Status: <strong style={{color: '#10b981'}}>Approved ✅</strong></span>
-            {hasVoted && <span style={{fontSize: '13px', color: '#38bdf8'}}>Vote recorded successfully!</span>}
+            {hasVoted && <span style={{fontSize: '13px', color: '#38bdf8'}}>Demo selection recorded in this page only.</span>}
           </div>
         </div>
       </section>
@@ -443,9 +493,9 @@ const LandingPage = () => {
       <section style={styles.consensusSection}>
         <div style={styles.consensusContainer} className="interactive-card">
           <div style={{textAlign: 'center', marginBottom: '30px'}}>
-            <span style={styles.aiBadge}>Advanced Capability</span>
+            <span style={styles.aiBadge}>UI Preview</span>
             <h2 style={{fontSize: '32px', margin: '15px 0 10px 0'}}>Team Consensus Meter</h2>
-            <p style={{color: '#94a3b8'}}>Granular alignment breakdown across all departmental pods.</p>
+            <p style={{color: '#94a3b8'}}>Illustrative layout only. Connect this component to vote-level analytics before displaying real consensus scores.</p>
           </div>
 
           <div style={styles.consensusGrid}>
@@ -471,7 +521,7 @@ const LandingPage = () => {
               <h3 style={{fontSize: '20px'}}>Overall Organization Consensus Score</h3>
               <p style={{color: '#94a3b8', fontSize: '13px', margin: '4px 0 0 0'}}>Calculated dynamically using weighted cross-departmental polling weights.</p>
             </div>
-            <div style={styles.consensusBigCircle}>87%</div>
+            <div style={styles.consensusBigCircle}>Demo</div>
           </div>
         </div>
       </section>
@@ -543,25 +593,26 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Analytics Preview */}
+      {/* Analytics Preview: actual totals, not fabricated percentages. */}
       <section style={styles.analyticsSection}>
-        <h2 style={styles.sectionTitle}>Built-in Intelligence & Metrics</h2>
+        <h2 style={styles.sectionTitle}>DecisionHub at a Glance</h2>
+        <p style={styles.sectionSubtitle}>Live totals loaded from the DecisionHub backend.</p>
         <div style={styles.analyticsGrid}>
           <div style={styles.analyticsCard} className="interactive-card">
-            <p style={styles.analyticsLabel}>Participation Rate</p>
-            <h3 style={styles.analyticsVal}>85%</h3>
+            <p style={styles.analyticsLabel}>Registered Users</p>
+            <h3 style={styles.analyticsVal}>{statsLoading ? "..." : formatCount(stats.totalUsers)}</h3>
           </div>
           <div style={styles.analyticsCard} className="interactive-card">
-            <p style={styles.analyticsLabel}>Votes This Month</p>
-            <h3 style={styles.analyticsVal}>1,240</h3>
+            <p style={styles.analyticsLabel}>Total Polls</p>
+            <h3 style={styles.analyticsVal}>{statsLoading ? "..." : formatCount(stats.totalPolls)}</h3>
           </div>
           <div style={styles.analyticsCard} className="interactive-card">
-            <p style={styles.analyticsLabel}>Active Teams</p>
-            <h3 style={styles.analyticsVal}>42</h3>
+            <p style={styles.analyticsLabel}>Total Teams</p>
+            <h3 style={styles.analyticsVal}>{statsLoading ? "..." : formatCount(stats.totalTeams)}</h3>
           </div>
           <div style={styles.analyticsCard} className="interactive-card">
-            <p style={styles.analyticsLabel}>Consensus Score</p>
-            <h3 style={styles.analyticsVal}>92%</h3>
+            <p style={styles.analyticsLabel}>Total Votes</p>
+            <h3 style={styles.analyticsVal}>{statsLoading ? "..." : stats.totalVotes == null ? "—" : formatCount(stats.totalVotes)}</h3>
           </div>
         </div>
       </section>
@@ -659,9 +710,10 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Sample testimonials: replace with real, permissioned customer feedback before launch. */}
       <section style={styles.testimonials}>
-        <h2 style={styles.sectionTitle}>Trusted by Fast-Moving Leaders</h2>
+        <h2 style={styles.sectionTitle}>Example User Feedback</h2>
+        <p style={styles.sectionSubtitle}>Sample copy for the design preview; not verified customer testimonials.</p>
         <div style={styles.testiGrid}>
           <div style={styles.testiCard} className="interactive-card">
             <p style={styles.testiText}>"DecisionHub reduced our weekly sync meeting time by 40%. The voting workflows are an absolute game changer."</p>

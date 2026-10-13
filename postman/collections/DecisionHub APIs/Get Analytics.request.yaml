@@ -1,0 +1,9 @@
+$kind: http-request
+name: Get Analytics
+url: http://localhost:5000/api/analytics
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_1cb9}}"
+order: 25000

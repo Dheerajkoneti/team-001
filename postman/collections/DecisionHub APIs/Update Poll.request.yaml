@@ -1,0 +1,18 @@
+$kind: http-request
+name: Update Poll
+url: http://localhost:5000/api/polls/6a9b0515445809930c94f1f3
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \  \"title\": \"Updated Poll\",\r
+
+    \  \"description\": \"Updated Description\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0ffk}}"
+order: 4116527820959646

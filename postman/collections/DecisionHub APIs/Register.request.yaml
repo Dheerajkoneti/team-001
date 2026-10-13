@@ -1,0 +1,16 @@
+$kind: http-request
+name: Register
+url: http://localhost:5000/api/auth/register
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"name\": \"Dheeraj Kumar\",\r
+
+    \  \"email\": \"99230040407@klu.ac.in\",\r
+
+    \  \"password\": \"Dheeraj@2004\"\r
+
+    }"
+order: 12000

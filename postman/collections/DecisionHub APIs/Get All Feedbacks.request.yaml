@@ -1,0 +1,9 @@
+$kind: http-request
+name: Get All Feedbacks
+url: http://localhost:5000/api/feedback
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0ffk}}"
+order: 6000

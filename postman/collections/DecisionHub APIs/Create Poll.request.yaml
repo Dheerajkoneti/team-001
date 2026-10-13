@@ -1,0 +1,48 @@
+$kind: http-request
+name: Create Poll
+url: http://localhost:5000/api/polls
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"title\": \"Best Technology\",\r
+
+    \  \"description\": \"Vote your favorite technology\",\r
+
+    \  \"question\": \"Which technology do you like most?\",\r
+
+    \  \"options\": [\r
+
+    \    {\r
+
+    \      \"text\": \"Java\"\r
+
+    \    },\r
+
+    \    {\r
+
+    \      \"text\": \"Python\"\r
+
+    \    },\r
+
+    \    {\r
+
+    \      \"text\": \"MERN\"\r
+
+    \    }\r
+
+    \  ],\r
+
+    \  \"pollType\": \"single\",\r
+
+    \  \"visibility\": \"public\",\r
+
+    \  \"anonymous\": false\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_1cb9}}"
+order: 31000

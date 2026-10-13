@@ -1,0 +1,14 @@
+$kind: http-request
+name: Verify OTP
+url: http://localhost:5000/api/auth/verify-email
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"email\": \"99230040407@klu.ac.in\",\r
+
+    \  \"code\": \"793523\"\r
+
+    }"
+order: 13000

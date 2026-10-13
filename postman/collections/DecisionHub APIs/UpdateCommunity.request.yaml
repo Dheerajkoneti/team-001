@@ -1,0 +1,18 @@
+$kind: http-request
+name: UpdateCommunity
+url: http://localhost:5000/api/communities/6a9dd6386611d4166c8080ab
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \  \"name\": \"AI Community Updated\",\r
+
+    \  \"description\": \"Updated Description\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0ffk}}"
+order: 23000
