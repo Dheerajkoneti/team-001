@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import API from "../api/axios";
 import { useNavigate, Link } from "react-router-dom";
 import {
   Zap,
@@ -46,10 +46,7 @@ const Login = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        form
-      );
+      const res = await API.post("/auth/login", form);
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem(
@@ -72,7 +69,7 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:5000/api/auth/google";
+    window.location.href = `${API.defaults.baseURL}/auth/google`;
   };
 
   return (
