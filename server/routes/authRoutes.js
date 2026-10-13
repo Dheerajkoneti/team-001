@@ -35,9 +35,14 @@ router.post("/forgot-password", forgotPassword);
 // Reset Password
 router.post("/reset-password", resetPassword);
 
+
 /* ==========================
    Google Authentication
 ========================== */
+
+const CLIENT_URL = (
+  process.env.CLIENT_URL || "http://localhost:5173"
+).replace(/\/$/, "");
 
 router.get(
   "/google",
@@ -54,7 +59,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", {
     session: false,
-    failureRedirect: "http://localhost:5173/login",
+    failureRedirect: `${CLIENT_URL}/login`,
   }),
   async (req, res) => {
     try {
@@ -64,25 +69,18 @@ router.get(
           role: req.user.role,
         },
         process.env.JWT_SECRET,
-        {
-          expiresIn: "7d",
-        }
+        { expiresIn: "7d" }
       );
 
       res.redirect(
-        `http://localhost:5173/dashboard?token=${token}`
-        );
+        `${CLIENT_URL}/dashboard?token=${encodeURIComponent(token)}`
+      );
     } catch (error) {
-      console.error(
-        "Google Auth Error:",
-        error
-      );
-
-      res.redirect(
-        "http://localhost:5173/login"
-      );
+      console.error("Google Auth Error:", error);
+      res.redirect(`${CLIENT_URL}/login`);
     }
   }
 );
+
 
 module.exports = router;
