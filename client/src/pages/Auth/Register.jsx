@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import API from "../../api/axios";
 import { useNavigate, Link } from "react-router-dom";
 import {
   User,
@@ -16,8 +16,6 @@ import {
 } from "lucide-react";
 
 import bgImage from "../../assets/images/Gemini_Generated_Image_qy1ynzqy1ynzqy1y.png";
-
-const API = "http://localhost:5000/api/auth";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -64,7 +62,7 @@ const Register = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post(`${API}/register`, {
+      const res = await API.post("/auth/register", {
         name: form.name,
         email: form.email,
         password: form.password,
@@ -88,7 +86,7 @@ const Register = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post(`${API}/verify-email`, {
+      const res = await API.post("/auth/verify-email", {
         email: form.email,
         code: verificationCode,
       });
@@ -110,7 +108,7 @@ const Register = () => {
   // ======================
   const resendOTP = async () => {
     try {
-      await axios.post(`${API}/resend-otp`, {
+      await API.post("/auth/resend-otp", {
         email: form.email,
       });
 
@@ -123,10 +121,9 @@ const Register = () => {
   // ======================
   // Google Login
   // ======================
-  const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:5000/api/auth/google";
-  };
-
+  window.location.href = `${
+    import.meta.env.VITE_API_URL || "http://localhost:5000/api"
+  }/auth/google`;
   return (
     <div style={styles.page}>
       <style>{`
