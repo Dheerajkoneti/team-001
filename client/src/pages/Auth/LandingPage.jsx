@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import API from "../../api/axios";
 import {
   Users,
   Vote,
@@ -61,15 +62,11 @@ const LandingPage = () => {
         const baseUrl = (
           import.meta.env.VITE_API_URL || "http://localhost:5000/api"
         ).replace(/\/$/, "");
-        const response = await fetch(`${baseUrl}/public/stats`, {
+        const response = await API.get("/public/stats", {
           signal: controller.signal,
         });
-
-        if (!response.ok) {
-          throw new Error(`Statistics request failed (${response.status})`);
-        }
-
-        const payload = await response.json();
+        
+        const payload = response.data;
         if (!payload.success || !payload.stats) {
           throw new Error("The statistics API returned an unexpected response.");
         }
