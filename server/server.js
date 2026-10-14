@@ -36,10 +36,9 @@ const publicStatsController = require("./controllers/publicStatsController");
 // =========================
 const app = express();
 
-
- // =========================
- // CORS
- // =========================
+// =========================
+// CORS CONFIGURATION
+// =========================
 const allowedOrigins = new Set([
   "http://localhost:5173",
   "https://team-001.vercel.app",
@@ -79,7 +78,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options(/.*/, cors(corsOptions));
-
 
 // =========================
 // GENERAL MIDDLEWARE
@@ -196,5 +194,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Vercel serverless entry point
+// =========================
+// VERCEL SERVERLESS EXPORT
+// =========================
 module.exports = app;
