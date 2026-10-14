@@ -5,9 +5,6 @@ const express = require("express");
 const cors = require("cors");
 const session = require("express-session");
 const passport = require("./config/passport");
-
-const http = require("http");
-const { Server } = require("socket.io");
 const path = require("path");
 
 const connectDB = require("./config/db");
@@ -35,83 +32,56 @@ const profileAnalyticsRoutes = require("./routes/profileAnalytics");
 const publicStatsController = require("./controllers/publicStatsController");
 
 // =========================
-// APP AND SERVER
+// EXPRESS APP
 // =========================
 const app = express();
-const server = http.createServer(app);
 
 // =========================
-// CORS CONFIGURATION
+// CORS
 // =========================
-const allowedOrigins = [
+const allowedOrigins = new Set([
   "http://localhost:5173",
   "https://team-001.vercel.app",
-];
+]);
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    // Allow requests without an Origin header, such as server-to-server requests.
-    if (!origin || allowedOrigins.includes(origin)) {
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.has(origin)) {
       return callback(null, true);
     }
 
-    console.error("CORS blocked origin:", origin);
+    console.warn("CORS blocked origin:", origin);
     return callback(new Error("Origin not allowed by CORS"));
   },
   credentials: true,
-  methods: [
-    "GET",
-    "POST",
-    "PUT",
-    "PATCH",
-    "DELETE",
-    "OPTIONS",
-  ],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-// =========================
-// SOCKET.IO CONFIGURATION
-// =========================
-const io = new Server(server, {
-  cors: corsOptions,
-});
-
-global.io = io;
-
-io.on("connection", (socket) => {
-  console.log("✅ User Connected:", socket.id);
-
-  socket.on("disconnect", () => {
-    console.log("❌ User Disconnected:", socket.id);
-  });
-});
-
-// =========================
-// DATABASE CONNECTION
-// =========================
-connectDB();
-
-// =========================
-// MIDDLEWARE
-// =========================
 app.use(cors(corsOptions));
+app.options(/.*/, cors(corsOptions));
 
+// =========================
+// GENERAL MIDDLEWARE
+// =========================
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  "/uploads",
-  express.static(path.join(__dirname, "uploads"))
-);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // =========================
 // SESSION
 // =========================
 app.use(
   session({
-    secret: process.env.JWT_SECRET,
+    secret: process.env.JWT_SECRET || "development-only-secret",
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      sameSite:
+        process.env.NODE_ENV === "production" ? "none" : "lax",
+    },
   })
 );
 
@@ -120,6 +90,31 @@ app.use(
 // =========================
 app.use(passport.initialize());
 app.use(passport.session());
+
+// =========================
+// DATABASE CONNECTION
+// =========================
+let databaseConnection;
+
+app.use(async (req, res, next) => {
+  try {
+    if (!databaseConnection) {
+      databaseConnection = connectDB();
+    }
+
+    await databaseConnection;
+    next();
+  } catch (error) {
+    databaseConnection = null;
+
+    console.error("Database connection failed:", error.message);
+
+    res.status(503).json({
+      success: false,
+      message: "Database temporarily unavailable",
+    });
+  }
+});
 
 // =========================
 // API ROUTES
@@ -135,10 +130,6 @@ app.use("/api/comments", commentRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/team-chat", teamChatRoutes);
-
-// Retained from your original code
-console.log("Team Routes Loaded");
-
 app.use("/api/team", teamRoutes);
 app.use("/api/community-posts", communityPostRoutes);
 app.use("/api/community-comments", communityCommentRoutes);
@@ -150,23 +141,34 @@ app.use("/api/profile-analytics", profileAnalyticsRoutes);
 // =========================
 // PUBLIC STATISTICS
 // =========================
-app.get(
-  "/api/public/stats",
-  publicStatsController.getPublicStats
-);
+app.get("/api/public/stats", publicStatsController.getPublicStats);
 
 // =========================
-// TEST ROUTE
+// HEALTH CHECK
 // =========================
 app.get("/", (req, res) => {
-  res.send("🚀 DecisionHub API Running...");
+  res.status(200).json({
+    success: true,
+    message: "DecisionHub API is running",
+  });
 });
 
 // =========================
 // ERROR HANDLER
 // =========================
 app.use((err, req, res, next) => {
-  console.error(err.stack || err.message);
+  console.error("API error:", err.message);
+
+  if (res.headersSent) {
+    return next(err);
+  }
+
+  if (err.message === "Origin not allowed by CORS") {
+    return res.status(403).json({
+      success: false,
+      message: "Origin not allowed",
+    });
+  }
 
   res.status(500).json({
     success: false,
@@ -174,11 +176,5 @@ app.use((err, req, res, next) => {
   });
 });
 
-// =========================
-// START SERVER
-// =========================
-const PORT = process.env.PORT || 5000;
-
-server.listen(PORT, () => {
-  console.log(`🚀 Server Running on Port ${PORT}`);
-});
+// Vercel serverless entry point
+module.exports = app;
