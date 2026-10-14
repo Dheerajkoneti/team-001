@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import API from "../../api/axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import {
   Zap,
   ArrowRight,
@@ -17,6 +17,7 @@ import bgImage from "../../assets/images/Gemini_Generated_Image_qy1ynzqy1ynzqy1y
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -46,22 +47,38 @@ const Login = () => {
     try {
       setLoading(true);
 
-      const res = await API.post("/auth/login", form);
+      const res = await API.post("/auth/login", {
+        email: form.email.trim(),
+        password: form.password,
+      });
+
+      if (!res.data?.token) {
+        throw new Error("Authentication token was not received.");
+      }
 
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem(
-        "user",
-        JSON.stringify(res.data.user)
-      );
+
+      if (res.data.user) {
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+      }
 
       triggerPopup("success", "Welcome back! Login Successful.");
 
+      const requestedPath = location.state?.from?.pathname;
+      const redirectPath =
+        requestedPath && requestedPath !== "/login"
+          ? requestedPath
+          : "/dashboard";
+
       setTimeout(() => {
-        navigate("/dashboard", { replace: true });
+        navigate(redirectPath, { replace: true });
       }, 1200);
     } catch (err) {
       const errorMsg =
-        err.response?.data?.message || "Invalid credentials. Please try again.";
+        err.response?.data?.message ||
+        err.message ||
+        "Invalid credentials. Please try again.";
+
       triggerPopup("error", errorMsg);
     } finally {
       setLoading(false);
