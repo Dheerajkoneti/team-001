@@ -1,3 +1,7 @@
+const __DECISIONHUB_API_ORIGIN__ = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://decisionhub-api.vercel.app/api"
+).replace(/\/api\/?$/i, "");
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import DashboardLayout from "../../components/DashboardLayout";
@@ -114,7 +118,7 @@ const TeamDetails = () => {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/team/add-member",
+        `${__DECISIONHUB_API_ORIGIN__}/api/team/add-member`,
         { teamId: id, email },
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
@@ -133,7 +137,7 @@ const TeamDetails = () => {
       async () => {
         try {
           await axios.post(
-            "http://localhost:5000/api/team/remove-member",
+            `${__DECISIONHUB_API_ORIGIN__}/api/team/remove-member`,
             { teamId: id, memberId },
             { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
           );
@@ -153,7 +157,7 @@ const TeamDetails = () => {
       async () => {
         try {
           await axios.post(
-            "http://localhost:5000/api/team/leave",
+            `${__DECISIONHUB_API_ORIGIN__}/api/team/leave`,
             { teamId: id },
             { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
           );
@@ -173,7 +177,7 @@ const TeamDetails = () => {
       async () => {
         try {
           await axios.delete(
-            `http://localhost:5000/api/team/${id}`,
+            `${__DECISIONHUB_API_ORIGIN__}/api/team/${id}`,
             { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
           );
           showAlert("Deleted", "Team workspace wiped successfully.");

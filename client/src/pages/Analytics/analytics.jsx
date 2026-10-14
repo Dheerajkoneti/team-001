@@ -1,3 +1,7 @@
+const __DECISIONHUB_API_ORIGIN__ = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://decisionhub-api.vercel.app/api"
+).replace(/\/api\/?$/i, "");
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
@@ -65,7 +69,7 @@ function Analytics() {
     setIsRefreshing(true);
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/analytics", {
+      const res = await axios.get(`${__DECISIONHUB_API_ORIGIN__}/api/analytics`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

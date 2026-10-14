@@ -1,3 +1,7 @@
+const __DECISIONHUB_API_ORIGIN__ = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://decisionhub-api.vercel.app/api"
+).replace(/\/api\/?$/i, "");
 import React, { useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -14,7 +18,7 @@ import {
 
 import bgImage from "../../assets/images/Gemini_Generated_Image_qy1ynzqy1ynzqy1y.png";
 
-const API = "http://localhost:5000/api/auth";
+const API = `${__DECISIONHUB_API_ORIGIN__}/api/auth`;
 
 function ResetPassword() {
   const [password, setPassword] = useState("");

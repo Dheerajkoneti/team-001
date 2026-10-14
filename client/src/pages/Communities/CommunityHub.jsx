@@ -1,3 +1,7 @@
+const __DECISIONHUB_API_ORIGIN__ = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://decisionhub-api.vercel.app/api"
+).replace(/\/api\/?$/i, "");
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import DashboardLayout from "../../components/DashboardLayout";
@@ -401,10 +405,10 @@ const CommunityHub = () => {
                         {post.image && (
                           <div 
                             style={styles.bubbleImageWrapper}
-                            onClick={() => setExpandedImage(`http://localhost:5000${post.image}`)}
+                            onClick={() => setExpandedImage(`${__DECISIONHUB_API_ORIGIN__}${post.image}`)}
                           >
                             <img
-                              src={`http://localhost:5000${post.image}`}
+                              src={`${__DECISIONHUB_API_ORIGIN__}${post.image}`}
                               alt="attachment"
                               style={styles.bubbleImageFit}
                             />
@@ -417,7 +421,7 @@ const CommunityHub = () => {
                         {/* File Attachment */}
                         {post.file && (
                         <a
-                        href={`http://localhost:5000${post.file}`}
+                        href={`${__DECISIONHUB_API_ORIGIN__}${post.file}`}
     target="_blank"
     rel="noopener noreferrer"
                         style={styles.bubbleFileLink}

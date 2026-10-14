@@ -1,3 +1,7 @@
+const __DECISIONHUB_API_ORIGIN__ = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://decisionhub-api.vercel.app/api"
+).replace(/\/api\/?$/i, "");
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../../api/axios";
@@ -60,7 +64,7 @@ const LandingPage = () => {
     const fetchPublicStats = async () => {
       try {
         const baseUrl = (
-          import.meta.env.VITE_API_URL || "http://localhost:5000/api"
+          import.meta.env.VITE_API_BASE_URL || `${__DECISIONHUB_API_ORIGIN__}/api`
         ).replace(/\/$/, "");
         const response = await API.get("/public/stats", {
           signal: controller.signal,

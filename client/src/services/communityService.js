@@ -1,6 +1,10 @@
+const __DECISIONHUB_API_ORIGIN__ = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://decisionhub-api.vercel.app/api"
+).replace(/\/api\/?$/i, "");
 import axios from "axios";
 
-const API = "http://localhost:5000/api/communities";
+const API = `${__DECISIONHUB_API_ORIGIN__}/api/communities`;
 
 const getToken = () => ({
   headers: {

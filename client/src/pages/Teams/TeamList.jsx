@@ -1,3 +1,7 @@
+const __DECISIONHUB_API_ORIGIN__ = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://decisionhub-api.vercel.app/api"
+).replace(/\/api\/?$/i, "");
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
 import { Users } from "lucide-react";
@@ -15,7 +19,7 @@ function TeamList() {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:5000/api/team",
+        `${__DECISIONHUB_API_ORIGIN__}/api/team`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -1,3 +1,7 @@
+const __DECISIONHUB_API_ORIGIN__ = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://decisionhub-api.vercel.app/api"
+).replace(/\/api\/?$/i, "");
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Bell, CheckCircle2, Trash2, Clock, Inbox, Sparkles, CheckCheck } from "lucide-react";
@@ -14,7 +18,7 @@ function Notifications() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        "http://localhost:5000/api/notifications",
+        `${__DECISIONHUB_API_ORIGIN__}/api/notifications`,
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -34,7 +38,7 @@ function Notifications() {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:5000/api/notifications/${id}/read`,
+        `${__DECISIONHUB_API_ORIGIN__}/api/notifications/${id}/read`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -56,7 +60,7 @@ function Notifications() {
           .filter((n) => !n.isRead)
           .map((n) =>
             axios.put(
-              `http://localhost:5000/api/notifications/${n._id}/read`,
+              `${__DECISIONHUB_API_ORIGIN__}/api/notifications/${n._id}/read`,
               {},
               { headers: { Authorization: `Bearer ${token}` } }
             )
@@ -72,7 +76,7 @@ function Notifications() {
     try {
       const token = localStorage.getItem("token");
       await axios.delete(
-        `http://localhost:5000/api/notifications/${id}`,
+        `${__DECISIONHUB_API_ORIGIN__}/api/notifications/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }

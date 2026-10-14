@@ -1,3 +1,7 @@
+const __DECISIONHUB_API_ORIGIN__ = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://decisionhub-api.vercel.app/api"
+).replace(/\/api\/?$/i, "");
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
@@ -34,7 +38,7 @@ function ManageUsers() {
     try {
       setLoading(true);
       const res = await axios.get(
-        "http://localhost:5000/api/users/all-users",
+        `${__DECISIONHUB_API_ORIGIN__}/api/users/all-users`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -53,7 +57,7 @@ function ManageUsers() {
   const updateRole = async (userId, role) => {
     try {
       await axios.put(
-        "http://localhost:5000/api/users/update-role",
+        `${__DECISIONHUB_API_ORIGIN__}/api/users/update-role`,
         { userId, role },
         {
           headers: {

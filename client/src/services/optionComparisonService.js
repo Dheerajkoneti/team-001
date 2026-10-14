@@ -1,8 +1,12 @@
+const __DECISIONHUB_API_ORIGIN__ = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://decisionhub-api.vercel.app/api"
+).replace(/\/api\/?$/i, "");
 
 import axios from "axios";
 
 const API = `${
-  import.meta.env.VITE_API_URL || "http://localhost:5000/api"
+  import.meta.env.VITE_API_BASE_URL || `${__DECISIONHUB_API_ORIGIN__}/api`
 }/option-comparison`;
 
 const getConfig = () => {

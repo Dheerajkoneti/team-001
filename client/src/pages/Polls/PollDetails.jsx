@@ -1,3 +1,7 @@
+const __DECISIONHUB_API_ORIGIN__ = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://decisionhub-api.vercel.app/api"
+).replace(/\/api\/?$/i, "");
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import DashboardLayout from "../../components/DashboardLayout";
@@ -88,7 +92,7 @@ const PollDetails = () => {
         if (!user?._id) return;
 
         const res = await fetch(
-          `http://localhost:5000/api/polls/${id}/user/${user._id}/voted`,
+          `${__DECISIONHUB_API_ORIGIN__}/api/polls/${id}/user/${user._id}/voted`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

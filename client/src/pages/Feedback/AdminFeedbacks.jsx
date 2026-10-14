@@ -1,3 +1,7 @@
+const __DECISIONHUB_API_ORIGIN__ = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://decisionhub-api.vercel.app/api"
+).replace(/\/api\/?$/i, "");
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { 
@@ -33,7 +37,7 @@ function AdminFeedbacks() {
     try {
       setLoading(true);
       const res = await axios.get(
-        "http://localhost:5000/api/feedback",
+        `${__DECISIONHUB_API_ORIGIN__}/api/feedback`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -52,7 +56,7 @@ function AdminFeedbacks() {
   const deleteFeedback = async (id) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/feedback/${id}`,
+        `${__DECISIONHUB_API_ORIGIN__}/api/feedback/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

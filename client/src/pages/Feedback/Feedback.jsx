@@ -1,3 +1,7 @@
+const __DECISIONHUB_API_ORIGIN__ = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://decisionhub-api.vercel.app/api"
+).replace(/\/api\/?$/i, "");
 import { useState, useRef } from "react";
 import axios from "axios";
 import { FiStar, FiSend, FiCheckCircle, FiAlertCircle, FiHeart, FiRotateCcw } from "react-icons/fi";
@@ -32,7 +36,7 @@ function Feedback() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "http://localhost:5000/api/feedback",
+        `${__DECISIONHUB_API_ORIGIN__}/api/feedback`,
         { rating, feedback },
         {
           headers: {
