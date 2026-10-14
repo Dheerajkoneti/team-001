@@ -36,17 +36,36 @@ const publicStatsController = require("./controllers/publicStatsController");
 // =========================
 const app = express();
 
-// =========================
-// CORS
-// =========================
+
+ // =========================
+ // CORS
+ // =========================
 const allowedOrigins = new Set([
   "http://localhost:5173",
   "https://team-001.vercel.app",
 ]);
 
+function isAllowedPreviewOrigin(origin) {
+  try {
+    const url = new URL(origin);
+
+    return (
+      url.protocol === "https:" &&
+      url.hostname.endsWith(".vercel.app") &&
+      url.hostname.startsWith("team-001-")
+    );
+  } catch {
+    return false;
+  }
+}
+
 const corsOptions = {
   origin(origin, callback) {
-    if (!origin || allowedOrigins.has(origin)) {
+    if (
+      !origin ||
+      allowedOrigins.has(origin) ||
+      isAllowedPreviewOrigin(origin)
+    ) {
       return callback(null, true);
     }
 
@@ -60,6 +79,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options(/.*/, cors(corsOptions));
+
 
 // =========================
 // GENERAL MIDDLEWARE
