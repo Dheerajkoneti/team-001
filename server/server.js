@@ -195,6 +195,17 @@ app.use((err, req, res, next) => {
 });
 
 // =========================
-// VERCEL SERVERLESS EXPORT
+// SERVER START / VERCEL EXPORT
 // =========================
+
 module.exports = app;
+
+// Start the server locally.
+// On Vercel, export the app for serverless handling.
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
+
+  app.listen(PORT, () => {
+    console.log(`DecisionHub API running at http://localhost:${PORT}`);
+  });
+}
