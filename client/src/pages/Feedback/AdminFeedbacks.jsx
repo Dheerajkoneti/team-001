@@ -93,7 +93,7 @@ function AdminFeedbacks() {
   });
 
   return (
-    <div style={{ width: "100vw", minHeight: "100vh", background: "radial-gradient(circle at top, #1e293b 0%, #0f172a 45%, #020617 100%)", color: "white", padding: "40px", boxSizing: "border-box", fontFamily: "system-ui, sans-serif", overflowX: "hidden" }}>
+    <div style={{ width: "100%",maxWidth: "100%",minWidth: 0, minHeight: "100vh", background: "radial-gradient(circle at top, #1e293b 0%, #0f172a 45%, #020617 100%)", color: "white", padding: "40px", boxSizing: "border-box", fontFamily: "system-ui, sans-serif", overflowX: "hidden" }}>
       <style>
         {`
           * { box-sizing: border-box; }

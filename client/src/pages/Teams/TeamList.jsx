@@ -3,7 +3,6 @@ const __DECISIONHUB_API_ORIGIN__ = (
   "https://decisionhub-api.vercel.app/api"
 ).replace(/\/api\/?$/i, "");
 import React, { useEffect, useState } from "react";
-import DashboardLayout from "../../components/DashboardLayout";
 import { Users } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -40,7 +39,7 @@ function TeamList() {
   }, []);
 
   return (
-    <DashboardLayout>
+    <>
       <style>{`
         .team-card {
           transition: all 0.3s ease;
@@ -123,7 +122,7 @@ function TeamList() {
           ))}
         </div>
       )}
-    </DashboardLayout>
+    </>
   );
 }
 

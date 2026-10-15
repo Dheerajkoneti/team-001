@@ -1,13 +1,18 @@
+
 import React from "react";
+import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 
-function DashboardLayout({ children }) {
+function DashboardLayout() {
   return (
     <div style={styles.layout}>
       <Navbar />
-      <div style={styles.mainContent}>
-        <div style={styles.innerWrapper}>{children}</div>
-      </div>
+
+      <main style={styles.mainContent}>
+        <div style={styles.innerWrapper}>
+          <Outlet />
+        </div>
+      </main>
     </div>
   );
 }
@@ -15,20 +20,27 @@ function DashboardLayout({ children }) {
 const styles = {
   layout: {
     display: "flex",
-    background: "#030712",
+    width: "100%",
     minHeight: "100vh",
+    background: "#030712",
     fontFamily: "'Inter', sans-serif",
     color: "#f8fafc",
+    overflowX: "clip",
   },
+
   mainContent: {
     flex: 1,
-    overflowY: "auto",
-    height: "100vh",
+    minWidth: 0,
+    minHeight: "100vh",
+    overflowX: "clip",
   },
+
   innerWrapper: {
+    width: "100%",
+    maxWidth: "1400px",
+    boxSizing: "border-box",
     padding: "40px",
     paddingBottom: "60px",
-    maxWidth: "1400px",
     margin: "0 auto",
   },
 };

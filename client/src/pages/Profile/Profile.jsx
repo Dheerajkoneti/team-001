@@ -1,7 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-import DashboardLayout from "../../components/DashboardLayout";
-
 import {
 
   User,
@@ -402,7 +400,7 @@ function Profile() {
 
     return (
 
-      <DashboardLayout>
+      <>
 
         <div style={styles.loadingContainer}>
 
@@ -416,7 +414,7 @@ function Profile() {
 
         </div>
 
-      </DashboardLayout>
+      </>
 
     );
 
@@ -426,7 +424,7 @@ function Profile() {
 
     return (
 
-      <DashboardLayout>
+      <>
 
         <div style={styles.page}>
 
@@ -474,7 +472,7 @@ function Profile() {
 
         </div>
 
-      </DashboardLayout>
+      </>
 
     );
 
@@ -496,7 +494,7 @@ function Profile() {
 
   return (
 
-    <DashboardLayout>
+    <>
 
       <div style={styles.page}>
 
@@ -1096,7 +1094,7 @@ function Profile() {
 
       </div>
 
-    </DashboardLayout>
+    </>
 
   );
 

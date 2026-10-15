@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DashboardLayout from "../../components/DashboardLayout";
 import { PlusCircle, Lock, Globe } from "lucide-react";
 import { getAllPolls } from "../../services/pollService";
 
@@ -21,7 +20,7 @@ function PollList() {
   }, [activeTab]);
 
   return (
-    <DashboardLayout>
+    <>
       <style>{`
         .poll-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .poll-card:hover { transform: translateY(-4px); border-color: rgba(56, 189, 248, 0.4) !important; box-shadow: 0 10px 30px rgba(14, 165, 233, 0.15); }
@@ -70,7 +69,7 @@ function PollList() {
           </div>
         ))}
       </div>
-    </DashboardLayout>
+    </>
   );
 }
 

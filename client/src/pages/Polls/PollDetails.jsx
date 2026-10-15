@@ -4,7 +4,6 @@ const __DECISIONHUB_API_ORIGIN__ = (
 ).replace(/\/api\/?$/i, "");
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import DashboardLayout from "../../components/DashboardLayout";
 import { CheckCircle2 } from "lucide-react";
 import jsPDF from "jspdf";
 import {
@@ -341,7 +340,7 @@ const PollDetails = () => {
 
   if (poll && poll.visibility === "private" && !accessGranted) {
     return (
-      <DashboardLayout>
+      <>
         <div style={{ maxWidth: "440px", margin: "80px auto" }}>
           <div style={styles.card}>
             <div style={{ textAlign: "center", marginBottom: "24px" }}>
@@ -362,12 +361,12 @@ const PollDetails = () => {
             </button>
           </div>
         </div>
-      </DashboardLayout>
+      </>
     );
   }
 
   return (
-    <DashboardLayout>
+    <>
       <style>{`
         .option-btn:hover { background: rgba(56, 189, 248, 0.15) !important; border-color: rgba(56, 189, 248, 0.5) !important; transform: translateY(-2px); }
         .back-btn:hover { color: #38bdf8 !important; }
@@ -764,7 +763,7 @@ const PollDetails = () => {
           )}
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

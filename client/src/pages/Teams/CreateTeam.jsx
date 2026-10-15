@@ -4,7 +4,6 @@ const __DECISIONHUB_API_ORIGIN__ = (
 ).replace(/\/api\/?$/i, "");
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DashboardLayout from "../../components/DashboardLayout";
 import { UserPlus } from "lucide-react";
 import axios from "axios";
 
@@ -54,7 +53,7 @@ function CreateTeam() {
   };
 
   return (
-    <DashboardLayout>
+    <>
       <div style={styles.card}>
         <div style={styles.header}>
           <div style={styles.iconBadge}>
@@ -120,7 +119,7 @@ function CreateTeam() {
           </button>
         </form>
       </div>
-    </DashboardLayout>
+    </>
   );
 }
 

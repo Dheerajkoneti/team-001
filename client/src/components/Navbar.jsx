@@ -257,7 +257,9 @@ function Navbar() {
 
 const styles = {
   navbar: {
+    flex: "0 0 280px",
     width: "280px",
+    minWidth: 0,
     background: "rgba(15, 23, 42, 0.85)",
     backdropFilter: "blur(20px)",
     height: "100vh",
@@ -268,6 +270,8 @@ const styles = {
     position: "sticky",
     top: 0,
     zIndex: 50,
+    boxSizing: "border-box",
+    overflowX: "hidden",
   },
 
   logoBrand: {
@@ -305,7 +309,10 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "8px",
+    flex: 1,
+    minHeight: 0,
     overflowY: "auto",
+    overflowX: "hidden",
   },
 
   linkItem: {

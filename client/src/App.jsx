@@ -5,7 +5,10 @@ import {
   Navigate,
   Route,
   Routes,
+  Outlet,
 } from "react-router-dom";
+
+import DashboardLayout from "./components/DashboardLayout";
 
 import LandingPage from "./pages/Auth/LandingPage";
 import Login from "./pages/Auth/Login";
@@ -46,16 +49,22 @@ import Analytics from "./pages/Analytics/analytics";
 import PublicRoute from "./components/PublicRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-// Keep all protected pages inside this wrapper.
-function PrivatePage({ children }) {
-  return <ProtectedRoute>{children}</ProtectedRoute>;
+// Protect dashboard routes and render the shared layout only once.
+function PrivateLayout() {
+  return (
+    <ProtectedRoute>
+      <DashboardLayout>
+        <Outlet />
+      </DashboardLayout>
+    </ProtectedRoute>
+  );
 }
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public landing page: always opens at "/" */}
+        {/* Public landing page */}
         <Route
           path="/"
           element={
@@ -65,7 +74,7 @@ function App() {
           }
         />
 
-        {/* Public authentication pages */}
+        {/* Authentication pages */}
         <Route
           path="/login"
           element={
@@ -111,195 +120,86 @@ function App() {
           }
         />
 
-        {/* Dashboard */}
-        <Route
-          path="/dashboard"
-          element={
-            <PrivatePage>
-              <Dashboard />
-            </PrivatePage>
-          }
-        />
+        {/* All protected pages share one DashboardLayout */}
+        <Route element={<PrivateLayout />}>
+          <Route
+            path="/dashboard"
+            element={<Dashboard />}
+          />
 
-        {/* Polls */}
-        <Route
-          path="/polls"
-          element={
-            <PrivatePage>
-              <PollList />
-            </PrivatePage>
-          }
-        />
+          {/* Polls */}
+          <Route path="/polls" element={<PollList />} />
+          <Route
+            path="/polls/create"
+            element={<CreatePoll />}
+          />
+          <Route
+            path="/polls/:id"
+            element={<PollDetails />}
+          />
 
-        <Route
-          path="/polls/create"
-          element={
-            <PrivatePage>
-              <CreatePoll />
-            </PrivatePage>
-          }
-        />
+          {/* Teams */}
+          <Route path="/teams" element={<TeamList />} />
+          <Route
+            path="/teams/create"
+            element={<CreateTeam />}
+          />
+          <Route
+            path="/teams/:id"
+            element={<TeamDetails />}
+          />
 
-        <Route
-          path="/polls/:id"
-          element={
-            <PrivatePage>
-              <PollDetails />
-            </PrivatePage>
-          }
-        />
+          {/* Profile and reports */}
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/reports" element={<Reports />} />
 
-        {/* Teams */}
-        <Route
-          path="/teams"
-          element={
-            <PrivatePage>
-              <TeamList />
-            </PrivatePage>
-          }
-        />
+          {/* Administration */}
+          <Route
+            path="/manage-users"
+            element={<ManageUsers />}
+          />
+          <Route
+            path="/admin-feedbacks"
+            element={<AdminFeedbacks />}
+          />
 
-        <Route
-          path="/teams/create"
-          element={
-            <PrivatePage>
-              <CreateTeam />
-            </PrivatePage>
-          }
-        />
+          {/* Communities */}
+          <Route
+            path="/Communities"
+            element={<CommunityList />}
+          />
+          <Route
+            path="/Community/:id"
+            element={<CommunityDetails />}
+          />
+          <Route
+            path="/Communities/create"
+            element={<CreateCommunity />}
+          />
+          <Route
+            path="/communities/:id/hub"
+            element={<CommunityHub />}
+          />
 
-        <Route
-          path="/teams/:id"
-          element={
-            <PrivatePage>
-              <TeamDetails />
-            </PrivatePage>
-          }
-        />
+          {/* Other application pages */}
+          <Route path="/comments" element={<Comments />} />
+          <Route
+            path="/notifications"
+            element={<Notifications />}
+          />
+          <Route
+            path="/option-comparison"
+            element={<OptionComparison />}
+          />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/analytics" element={<Analytics />} />
+        </Route>
 
-        {/* Profile and reports */}
+        {/* Unknown URLs */}
         <Route
-          path="/profile"
-          element={
-            <PrivatePage>
-              <Profile />
-            </PrivatePage>
-          }
+          path="*"
+          element={<Navigate to="/" replace />}
         />
-
-        <Route
-          path="/reports"
-          element={
-            <PrivatePage>
-              <Reports />
-            </PrivatePage>
-          }
-        />
-
-        {/* Admin */}
-        <Route
-          path="/manage-users"
-          element={
-            <PrivatePage>
-              <ManageUsers />
-            </PrivatePage>
-          }
-        />
-
-        <Route
-          path="/admin-feedbacks"
-          element={
-            <PrivatePage>
-              <AdminFeedbacks />
-            </PrivatePage>
-          }
-        />
-
-        {/* Communities: preserve the original URL casing */}
-        <Route
-          path="/Communities"
-          element={
-            <PrivatePage>
-              <CommunityList />
-            </PrivatePage>
-          }
-        />
-
-        <Route
-          path="/Community/:id"
-          element={
-            <PrivatePage>
-              <CommunityDetails />
-            </PrivatePage>
-          }
-        />
-
-        <Route
-          path="/Communities/create"
-          element={
-            <PrivatePage>
-              <CreateCommunity />
-            </PrivatePage>
-          }
-        />
-
-        <Route
-          path="/communities/:id/hub"
-          element={
-            <PrivatePage>
-              <CommunityHub />
-            </PrivatePage>
-          }
-        />
-
-        {/* Other application pages */}
-        <Route
-          path="/comments"
-          element={
-            <PrivatePage>
-              <Comments />
-            </PrivatePage>
-          }
-        />
-
-        <Route
-          path="/notifications"
-          element={
-            <PrivatePage>
-              <Notifications />
-            </PrivatePage>
-          }
-        />
-
-        <Route
-          path="/option-comparison"
-          element={
-            <PrivatePage>
-              <OptionComparison />
-            </PrivatePage>
-          }
-        />
-
-        <Route
-          path="/feedback"
-          element={
-            <PrivatePage>
-              <Feedback />
-            </PrivatePage>
-          }
-        />
-
-        <Route
-          path="/analytics"
-          element={
-            <PrivatePage>
-              <Analytics />
-            </PrivatePage>
-          }
-        />
-
-        {/* Unknown URLs return to the landing page */}
-        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

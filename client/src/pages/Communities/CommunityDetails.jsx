@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import DashboardLayout from "../../components/DashboardLayout";
 import { 
   getCommunityById, 
   leaveCommunity, 
@@ -101,19 +100,19 @@ const CommunityDetails = () => {
 
   if (loading || !community) {
     return (
-      <DashboardLayout>
+      <>
         <div style={styles.loadingContainer}>
           <div style={styles.spinner}></div>
           <p style={{ color: "#94a3b8", fontSize: "15px", fontWeight: "600" }}>Loading decentralized node...</p>
         </div>
-      </DashboardLayout>
+      </>
     );
   }
 
   const isOwner = community.createdBy?._id === user?._id;
 
   return (
-    <DashboardLayout>
+    <>
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes scaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
@@ -245,7 +244,7 @@ const CommunityDetails = () => {
           </div>
         </div>
       )}
-    </DashboardLayout>
+    </>
   );
 };
 

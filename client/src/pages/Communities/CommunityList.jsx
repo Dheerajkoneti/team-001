@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DashboardLayout from "../../components/DashboardLayout";
 import { 
   getCommunities, 
   joinCommunity 
@@ -73,17 +72,17 @@ const CommunityList = () => {
 
   if (loading) {
     return (
-      <DashboardLayout>
+      <>
         <div style={styles.loadingContainer}>
           <div style={styles.spinner}></div>
           <p style={{ color: "#94a3b8", fontSize: "15px", fontWeight: "600" }}>Loading community hubs...</p>
         </div>
-      </DashboardLayout>
+      </>
     );
   }
 
   return (
-    <DashboardLayout>
+    <>
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes scaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
@@ -222,7 +221,7 @@ const CommunityList = () => {
           </div>
         </div>
       )}
-    </DashboardLayout>
+    </>
   );
 };
 

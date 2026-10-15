@@ -4,7 +4,6 @@ const __DECISIONHUB_API_ORIGIN__ = (
 ).replace(/\/api\/?$/i, "");
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import DashboardLayout from "../../components/DashboardLayout";
 import { getCommunityById, leaveCommunity, getCommunities } from "../../services/communityService";
 import {
   getPosts,
@@ -194,7 +193,7 @@ const CommunityHub = () => {
   const announcementPost = posts.find((post) => post.isAnnouncement);
 
   return (
-    <DashboardLayout>
+    <>
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes scaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
@@ -573,7 +572,7 @@ const CommunityHub = () => {
           </div>
         </div>
       )}
-    </DashboardLayout>
+    </>
   );
 };
 

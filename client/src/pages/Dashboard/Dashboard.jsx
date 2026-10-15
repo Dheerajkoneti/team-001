@@ -8,9 +8,6 @@ import {
   getVoteDistribution,
   getDecisionTrends
 } from "../../services/dashboardService";
-
-import DashboardLayout from "../../components/DashboardLayout";
-
 import {
   Users,
   Vote,
@@ -193,7 +190,7 @@ function Dashboard() {
 
   return (
 
-    <DashboardLayout>
+    <>
 
       <style>{`
 
@@ -317,18 +314,6 @@ function Dashboard() {
               />
 
             </div>
-
-
-            <button
-              style={styles.primaryActionBtn}
-              className="action-btn"
-            >
-
-              <PlusCircle size={18} />
-
-              New Decision
-
-            </button>
 
           </div>
 
@@ -969,7 +954,7 @@ function Dashboard() {
 
       </div>
 
-    </DashboardLayout>
+    </>
 
   );
 

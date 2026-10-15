@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DashboardLayout from "../../components/DashboardLayout";
 import { PlusCircle } from "lucide-react";
 import { createPoll } from "../../services/pollService";
 
@@ -40,7 +39,7 @@ function CreatePoll() {
   };
 
   return (
-    <DashboardLayout>
+    <>
       <style>{`
         .input-field:focus { border-color: #38bdf8 !important; box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); outline: none; }
         .action-btn:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(14, 165, 233, 0.4); }
@@ -119,7 +118,7 @@ function CreatePoll() {
           </button>
         </form>
       </div>
-    </DashboardLayout>
+    </>
   );
 }
 
