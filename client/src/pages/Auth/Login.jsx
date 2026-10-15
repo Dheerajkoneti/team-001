@@ -348,9 +348,11 @@ const Login = () => {
 
 const styles = {
   page: {
-    width: "100vw",
-    height: "100vh",
-    overflow: "hidden",
+    width: "100%",
+    minHeight: "100vh",
+    minHeight: "100dvh",
+    overflowX: "hidden",
+    overflowY: "auto",
     position: "relative",
     fontFamily: "'Inter', sans-serif",
   },
@@ -427,14 +429,15 @@ const styles = {
   },
 
   card: {
-    width: "430px",
-    padding: "40px",
+    width: "100%",
+    maxWidth: "430px",
+    padding: "clamp(22px, 5vw, 40px)",
     borderRadius: "24px",
-    background: "rgba(15, 23, 42, 0.75)",
+    background: "rgba(15, 23, 42, 0.85)",
     backdropFilter: "blur(20px)",
     border: "1px solid rgba(255, 255, 255, 0.12)",
     color: "#fff",
-    boxShadow: "0 30px 60px rgba(0, 0, 0, 0.7)",
+    boxShadow: "0 30px 60px rgba(0, 0, 0, 0.4)",
   },
 
   logoBox: {
