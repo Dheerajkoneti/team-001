@@ -86,7 +86,7 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = `${API.defaults.baseURL}/auth/google`;
+    window.location.href = `${API_ORIGIN}/api/auth/google`;
   };
 
   return (
@@ -418,15 +418,19 @@ const styles = {
     right: "-120px",
   },
 
+  
   container: {
     position: "relative",
     zIndex: 10,
-    height: "100%",
+    width: "100%",
+    minHeight: "100vh",
+    minHeight: "100dvh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "20px",
+    padding: "24px 20px",
   },
+
 
   card: {
     width: "100%",
